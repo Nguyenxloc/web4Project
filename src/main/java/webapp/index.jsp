@@ -1,402 +1,195 @@
-<%@page import="repository.manageStudent"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Volunteer Sign up form</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-	crossorigin="anonymous">
-<style>
-html, body {
-	min-height: 100%;
-}
-
-body, div, form, input, select, textarea, label, p {
-	padding: 0;
-	margin: 0;
-	outline: none;
-	font-family: Roboto, Arial, sans-serif;
-	font-size: 14px;
-	color: #666;
-	line-height: 22px;
-}
-
-h1 {
-	position: absolute;
-	margin: 0;
-	font-size: 40px;
-	color: #fff;
-	z-index: 2;
-	line-height: 83px;
-}
-
-textarea {
-	width: calc(100% - 12px);
-	padding: 5px;
-}
-
-.testbox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: inherit;
-	padding: 20px;
-}
-
-form {
-	width: 100%;
-	padding: 20px;
-	border-radius: 6px;
-	background: #fff;
-	box-shadow: 0 0 8px #669999;
-}
-
-.banner {
-	position: relative;
-	height: 350px;
-	background-size: cover;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
-
-.banner::after {
-	content: "";
-	background-color: rgba(0, 0, 0, 0.3);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
-input, select, textarea {
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-}
-
-input {
-	width: calc(100% - 10px);
-	padding: 5px;
-}
-
-input[type="date"] {
-	padding: 4px 5px;
-}
-
-textarea {
-	width: calc(100% - 12px);
-	padding: 5px;
-}
-
-.item:hover p, .item:hover i, .question:hover p, .question label:hover,
-	input:hover::placeholder {
-	color: #669999;
-}
-
-.item input:hover, .item select:hover, .item textarea:hover {
-	border: 1px solid transparent;
-	box-shadow: 0 0 3px 0 #669999;
-	color: #669999;
-}
-
-.item {
-	position: relative;
-	margin: 10px 0;
-}
-
-.item span {
-	color: red;
-}
-
-.week {
-	display: flex;
-	justfiy-content: space-between;
-}
-
-.colums {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-.colums div {
-	width: 48%;
-}
-
-input[type="date"]::-webkit-inner-spin-button {
-	display: none;
-}
-
-.item i, input[type="date"]::-webkit-calendar-picker-indicator {
-	position: absolute;
-	font-size: 20px;
-	color: #a3c2c2;
-}
-
-.item i {
-	right: 1%;
-	top: 30px;
-	z-index: 1;
-}
-
-input[type=radio], input[type=checkbox] {
-	display: none;
-}
-
-label.radio {
-	position: relative;
-	display: inline-block;
-	margin: 5px 20px 15px 0;
-	cursor: pointer;
-}
-
-.question span {
-	margin-left: 30px;
-}
-
-.question-answer label {
-	display: block;
-}
-
-label.radio:before {
-	content: "";
-	position: absolute;
-	left: 0;
-	width: 17px;
-	height: 17px;
-	border-radius: 50%;
-	border: 2px solid #ccc;
-}
-
-input[type=radio]:checked+label:before, label.radio:hover:before {
-	border: 2px solid #669999;
-}
-
-label.radio:after {
-	content: "";
-	position: absolute;
-	top: 6px;
-	left: 5px;
-	width: 8px;
-	height: 4px;
-	border: 3px solid #669999;
-	border-top: none;
-	border-right: none;
-	transform: rotate(-45deg);
-	opacity: 0;
-}
-
-input[type=radio]:checked+label:after {
-	opacity: 1;
-}
-
-.flax {
-	display: flex;
-	justify-content: space-around;
-}
-
-.btn-block {
-	margin-top: 10px;
-	text-align: center;
-}
-
-button {
-	width: 150px;
-	padding: 10px;
-	border: none;
-	border-radius: 5px;
-	background: #669999;
-	font-size: 16px;
-	color: #fff;
-	cursor: pointer;
-}
-
-button:hover {
-	background: #a3c2c2;
-}
-
-@media ( min-width : 568px) {
-	.name-item, .city-item {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-	.name-item input, .name-item div {
-		width: calc(50% - 20px);
-	}
-	.name-item div input {
-		width: 97%;
-	}
-	.name-item div label {
-		display: block;
-		padding-bottom: 5px;
-	}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
 </head>
-<body>
-	<div class="testbox">
-		<form action="helloServlet" method=post>
-			<div class="banner">
-				<img src="img\volunteer.jpg" height=100% width=100%>
-				<h1>Volunteer Signup</h1>
-			</div>
-			<br />
-			<p>The HELP Group is seeking volunteers to serve our community.
-				Fill in the information below to indicate how you would like to
-				become involved.</p>
-			<br />
-			<div class="colums">
-				<div class="item">
-					<label for="name">Name<span>*</span></label> <input id="name"
-						type="text" name="name" required />
-				</div>
-				<div class="item">
-					<label for="eaddress">Email Address<span>*</span></label> <input
-						id="eaddress" type="text" name="eaddress" required />
-				</div>
-				<div class="item">
-					<label for="phone">Phone<span>*</span></label> <input id="phone"
-						type="tel" name="phone" required />
-				</div>
-				<div class="item">
-					<label for="street">Street<span>*</span></label> <input id="street"
-						type="text" name="street" required />
-				</div>
-				<div class="item">
-					<label for="city">City<span>*</span></label> <input id="city"
-						type="text" name="city" required />
-				</div>
-				<div class="item">
-					<label for="state">State<span>*</span></label> <input id="state"
-						type="text" name="state" required />
-				</div>
-				<div class="item">
-					<label for="zip">Zip<span>*</span></label> <input id="zip"
-						type="text" name="zip" required />
-				</div>
-			</div>
-			<div class="question">
-				<label>Include my contact information on lists distributed
-					to other attendees.</label>
-				<div class="question-answer">
-					<div>
-						<input type="radio" value="Yes" id="radio_1" name="info" /> <label
-							for="radio_1" class="radio"><span>Yes</span></label>
-					</div>
-					<div>
-						<input type="radio" value="No" id="radio_2" name="info" /> <label
-							for="radio_2" class="radio"><span>No</span></label>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<p>Meal Preference</p>
-				<input list="meal" name="MealOption" id="browser"
-					style="width: 20%;">
-				<datalist id="meal">
-					<option selected value="" disabled selected></option>
-					<option value="Beef">Beef</option>
-					<option value="Chicken">Chicken</option>
-					<option value="Vegetarian">Vegetarian</option>
-					<option value="None">None</option>
-				</datalist>
-			</div>
-			<div class="week">
-				<div class="question">
-					<label>Days Attending </label>
-					<div class="question-answer">
-						<div>
-							<input type="radio" value="Sunday" id="radio_3" name="day" /> <label
-								for="radio_3" class="radio"><span>Sunday</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Monday" id="radio_4" name="day" /> <label
-								for="radio_4" class="radio"><span>Monday</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Tuesday" id="radio_5" name="day" /> <label
-								for="radio_5" class="radio"><span>Tuesday</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Tuesday" id="radio_6" name="day" /> <label
-								for="radio_6" class="radio"><span>c</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Thursday" id="radio_7" name="day" />
-							<label for="radio_7" class="radio"><span>Thursday</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Friday" id="radio_8" name="day" /> <label
-								for="radio_8" class="radio"><span>Friday</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Saturday" id="radio_9" name="day" />
-							<label for="radio_9" class="radio"><span>Saturday</span></label>
-						</div>
-					</div>
-				</div>
-				<div class="question">
-					<label>Activities Attending</label>
-					<div class="question-answer">
-						<div>
-							<input type="radio" value="CEO luncheon" id="radio_10"
-								name="activity" /> <label for="radio_10" class="radio"><span>CEO
-									luncheon</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Finance seminar" id="radio_11"
-								name="activity" /> <label for="radio_11" class="radio"><span>Finance
-									seminar</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Leadership seminar" id="radio_12"
-								name="activity" /> <label for="radio_12" class="radio"><span>Leadership
-									seminar</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Marketing workshop" id="radio_13"
-								name="activity" /> <label for="radio_13" class="radio"><span>Marketing
-									workshop</span></label>
-						</div>
-						<div>
-							<input type="radio" value="Teamwork seminar" id="radio_14"
-								name="activity" /> <label for="radio_14" class="radio"><span>Teamwork
-									seminar</span></label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<label for="visit">Special Requirements</label>
-				<textarea id="visit" rows="3" name="specialRequirement"></textarea>
-			</div>
-			<div class="question">
-				<label>Did you attend last years conference?</label>
-				<div class="question-answer">
-					<div>
-						<input type="radio" value="Yes" id="radio_15" name="contact" /> <label
-							for="radio_15" class="radio"><span>Yes</span></label>
-					</div>
-					<div>
-						<input type="radio" value="No" id="radio_16" name="contact" /> <label
-							for="radio_16" class="radio"><span>No</span></label>
-					</div>
-				</div>
-			</div>
-			<div class="btn-block">
-						<button type="submit" >Submit</button>
 
-			</div>
-		</form>
-	</div>
+<body ng-app="myApp">
+<header>
+    <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Travellokal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#!/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#!/booking">Flight booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#!/contact">Contacts</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control bg-light me-2" style="border:none" type="search"
+                           placeholder="Tìm kiếm" aria-label="Tìm kiếm">
+                    <button type="button" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner1.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;;height:250px;" src="img/banner1.2.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;;height:250px;" src="img/banner1.4.jpg"
+                             alt="Responsive image">
+                    </div>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Hanoi hustle</h5>
+                    <p>If you love street food, love hustle, and classical,So book a ticket to travel that city now
+                        <br>
+                        <p2 style="font-size:12px;">Click to banner to know detail</p2>
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner2.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner2.1.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner2.2.jpg"
+                             alt="Responsive image">
+                    </div>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Hoi An</h5>
+                    <p>What a good vibe place for your vacation.
+                        <br>
+                        <p2 style="font-size:12px;">Click to banner to know detail</p2>
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner3.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner3.1.jpg"
+                             alt="Responsive image">
+                    </div>
+                    <div class="col-4 md-4 sm-4" style="padding: 0;">
+                        <img class="d-block w-100" style="width: auto;height:250px;" src="img/banner3.2.jpg"
+                             alt="Responsive image">
+                    </div>
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>New york</h5>
+                    <p>If you love the film about wall street drama, let discover the big head finance city of the
+                        world
+                        <br>
+                        <p2 style="font-size:12px;">Click to banner to know detail</p2>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
+<!-- <div class="col-f" style="width:700px;margin-left: auto;margin-right: auto;"> -->
+<main ng-view style="width:700px;margin-left: auto;margin-right: auto;">
+
+</main>
+<footer id="footer" style="margin-top: 60px;">
+    <div class="container">
+        <div class="row" style="width:750px;margin-left: auto;margin-right: auto;">
+            <div class="col-4 md-4">
+                <div class="useful-link">
+                    <h2 style="color:white;">Useful Links</h2>
+                    <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                    <div class="use-links">
+                        <li><a href=""><i class="fa-solid fa-angles-right"></i> Home</a></li>
+                        <li><a href=""><i class="fa-solid fa-angles-right"></i> About Us</a>
+                        </li>
+                        <li><a href=""><i class="fa-solid fa-angles-right"></i> Gallery</a>
+                        </li>
+                        <li><a href=""><i class="fa-solid fa-angles-right"></i> Contact</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 md-4">
+                <div class="social-links">
+                    <h2 style="color: white;">Follow Us</h2>
+                    <img src="./assets/images/about/home_line.png" alt="">
+                    <div class="social-icons">
+                        <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        <li><a href=""><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4 md-4">
+                <div class="address">
+                    <h2 style="color: white">Address</h2>
+                    <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                    <div class="address-links">
+                        <li class="address1"><i class="fa-solid fa-location-dot"></i>FPT
+                            Nam Từ Liêm-
+                            Hà Nội
+                            Việt Nam</li>
+                        <li><a href=""><i class="fa-solid fa-phone"></i> +84374223222</a></li>
+                        <li><a href=""><i class="fa-solid fa-envelope"></i> phucloc@gmail.com</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="controllers/HomeController.js"></script>
+<script src="controllers/BookingController.js"></script>
+<script src="controllers/ContactController.js"></script>
 </body>
 </html>

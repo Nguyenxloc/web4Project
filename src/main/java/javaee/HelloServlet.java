@@ -71,9 +71,7 @@ public class HelloServlet extends HttpServlet {
 			sttOfLastYearInt = 1;
 		else
 			sttOfLastYearInt = 0;
-
 		String Id = null;
-
 		ManageVolunteer mngV = new ManageVolunteer();
 		mngV.addVolunteer(name, eAddress, phone, street, city, state, zip, infoInt, day, activity,
 				specialRequirement, sttOfLastYearInt);
